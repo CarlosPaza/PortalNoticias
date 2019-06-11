@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+*,
+*:before,
+*:after {
+box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 6rem;
+}
+
+.footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color:lightgrey;
+  position: absolute;
+}
+
+.titulo {
+  margin-top: 15px;
+}
+
+.autor {
+    color: darkgray;
+    font-size: 0.9em;
+}
+
+.pesquisa {
+    margin-bottom: 15px;
+}
+
+.view_noticia {
+    margin-top: 30px;
+}
+
+.titulo_noticia {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#toast-container > div {
+  opacity:1;
+}
+
+.texto_noticia {
+  white-space: pre-wrap;
+}

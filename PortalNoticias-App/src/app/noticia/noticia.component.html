@@ -1,0 +1,38 @@
+<app-titulo [titulo]="titulo"></app-titulo>
+
+<div *ngIf="acao === 1" class="form-inline pesquisa">
+  <div class="form-group mb-2">
+    <input id="search" type="text" class="form-control mr-2" 
+    placeholder="buscar"
+    [(ngModel)]="filtroLista"
+    (keydown)="onKeydown($event)">
+    <button class="btn btn-outline-success" (click)="filtrarNoticias(this.filtroLista)" >Pesquisar</button>
+  </div>
+</div>
+
+<div *ngFor="let noticia of noticiasFiltradas" class="container">
+  <div class="span8">
+    <div class="row">
+      <div class="span8">
+        <h4><strong><a routerLink="../../noticia/{{noticia.id}}">{{noticia.titulo}}</a></strong></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p class="autor">
+          por {{noticia.autor.nome}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">      
+        <p>
+            {{noticia.texto.substr(0,200)}}...
+        </p>
+        <p><a class="btn btn-secondary" routerLink="../../noticia/{{noticia.id}}">Leia Mais</a></p>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

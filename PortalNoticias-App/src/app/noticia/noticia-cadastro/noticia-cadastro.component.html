@@ -1,0 +1,84 @@
+<app-titulo [titulo]="titulo"></app-titulo>
+
+<form [formGroup]="registerForm">
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Autor</label>
+      <ng-select [items]="this.autores"
+                [addTag]="addTag"
+                addTagText="Novo Autor"
+                [hideSelected]="true"
+                [multiple]="false"
+                bindLabel="nome"
+                [(ngModel)]="this.autor"
+                [ngClass]="{'is-invalid': registerForm.get('autor').errors && registerForm.get('autor').touched}"
+                formControlName="autor">
+        </ng-select>
+      <div *ngIf="registerForm.get('autor').hasError('required')
+    && registerForm.get('autor').touched" class="invalid-feedback">
+        Autor é obrigatório.
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Título</label>
+      <input type="text" class="form-control"
+        [ngClass]="{'is-invalid': registerForm.get('titulo').errors && registerForm.get('titulo').touched}"
+        formControlName="titulo" placeholder="Insira o Título">
+      <div *ngIf="registerForm.get('titulo').hasError('required')
+    && registerForm.get('titulo').touched" class="invalid-feedback">
+        Título é obrigatório.
+      </div>
+      <div *ngIf="registerForm.get('titulo').hasError('maxlength')
+&& registerForm.get('titulo').touched" class="invalid-feedback">
+        Título deve ter no máximo 255 Caracters.
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label>Texto</label>
+      <textarea class="form-control" [ngClass]="{'is-invalid': registerForm.get('texto').errors 
+&& registerForm.get('texto').touched}" formControlName="texto" placeholder="Insira o Texto" rows="5"></textarea>
+      <div *ngIf="registerForm.get('texto').hasError('required')
+&& registerForm.get('texto').touched" class="invalid-feedback">
+        Texto é obrigatório.
+      </div>
+    </div>
+  </div>
+</form>
+<div class="d-flex">
+    <button class="btn btn-secondary" (click)="cancelarSave(confirm)">
+      Cancelar
+    </button>
+    <button class="btn btn-primary ml-auto" [disabled]="!registerForm.valid" (click)="salvarAlteracao()">
+      Salvar
+    </button>
+  </div>
+
+  <div bsModal #confirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">
+              Cancelar Cadastro
+            </h4>
+            <button type="button" class="close pull-right" (click)="confirm.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>{{bodyDeletarEvento}}</p>
+          </div>
+          <div class="modal-footer btn-group d-flex">
+            <button type="button" class="btn btn-outline-secondary" (click)="confirm.hide()">
+              Não
+            </button>
+            <button type="button" class="btn btn-outline-primary" routerLink="">
+              Sim
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
